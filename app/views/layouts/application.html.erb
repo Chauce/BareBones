@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BareBones</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', () => {
+            fetch('https://api.openweathermap.org/data/2.5/weather?lat=40&lon=-74&appid=6094bad2b39d0c18494fb1fe6179385f')
+              .then(response => response.json())
+              .then(results => {console.log(results); document.getElementById("temp").innerHTML = results.main.temp; document.getElementById("city").innerHTML = results.name});
+      });
+    </script>
+  </head>
+
+  <body>
+    <%= yield %>
+
+    <h1 id="temp"></h1>
+    <h1 id="city"></h1>
+
+
+  </body>
+</html>
